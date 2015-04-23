@@ -1,4 +1,4 @@
-<div>
+<article>
 	<form method="POST" action="administra.php">
 		<input type="hidden" name="operacao" value="incluir" />
 		<div>
@@ -16,4 +16,12 @@
 		<input type="submit" value="Incluir">
 	</form>
 
-</div>
+</article>
+<div>&nbsp;</div>
+<article>
+	<form method="POST" action="administra.php">
+		<input type="hidden" name="operacao" value="mostrar" />
+		<input type="submit" value="Mostrar" />
+	</form>
+	
+</article>
