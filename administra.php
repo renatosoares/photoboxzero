@@ -3,7 +3,6 @@ $operacao = $_POST["operacao"];
 include ("conecta_db.php");
 if ($operacao == "incluir") {
 
-
 	$titulo = $_POST["titulo"];
 	$categoria = $_POST["categoria"];
 	$descricao = $_POST["descricao"];
@@ -19,8 +18,14 @@ if ($operacao == "incluir") {
 		$reg = mysqli_fetch_row($resultado);
 		echo "$reg[0]<br /> $reg[1]<br /> $reg[2]<br /> $reg[3]<br /><br />";
 	}
-}
+} elseif ($operacao == "excluir") {
+	$ID = $_POST["id"];
+	$query = "DELETE FROM posts WHERE id = '$ID'";
+	$resultado = mysqli_query($conexao, $query)
+	or die("ouve um erro na exclusão!");
+	
 
+}
 
 mysqli_close($conexao);
 ?>
