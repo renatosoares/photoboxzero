@@ -2,18 +2,18 @@
 	<h2>Incluir</h2>
 	<form method="POST" action="administra.php">
 		<input type="hidden" name="operacao" value="incluir" />
-		<div>
+		<fieldset>
 			<label>Título</label>
 			<input type="text" name="titulo">
-		</div>
-		<div>
+		</fieldset>
+		<fieldset>
 			<label>Categoria</label>
 			<input type="text" name="categoria">
-		</div>
-		<div>
+		</fieldset>
+		<fieldset>
 			<label >Descrição</label>
 			<textarea name="descricao" id="" cols="30" rows="10"></textarea>
-		</div>
+		</fieldset>
 		<input type="submit" value="Salvar">
 	</form>
 

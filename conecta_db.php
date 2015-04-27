@@ -1,9 +1,7 @@
 <?php
-$db_host = 'localhost';
-$db_user = 'root';
-$db_password = '';
-$db_database = 'photoboxzero';
-
-$conexao = mysqli_connect($db_host, $db_user, $db_password, $db_database) or die('Não foi possível conectar');
-
+  // Define database connection constants
+  define('DB_HOST', 'localhost');
+  define('DB_USER', 'root');
+  define('DB_PASSWORD', '');
+  define('DB_NAME', 'photoboxzero');
 ?>
