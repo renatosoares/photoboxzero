@@ -4,7 +4,7 @@ include '../header.php';
 ?>
 	<section>	
 		<article>
-			adicionar
+			<?php require_once('../../controllers/create_image_controller.php');?>
 		</article>	
 	</section>
 
