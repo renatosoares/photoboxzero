@@ -7,7 +7,7 @@
 				if (isset($_POST['submit'])) {
 					// pega os dados de upload da imagem
                     $creImg->setDadosBanco($_POST["titulo"], $_POST["categoria"], $_POST["descricao"], $_FILES['imagemUpload']['name'], $_FILES['imagemUpload']['type'], $_FILES['imagemUpload']['size']);
-					
+					echo $creImg->getDadosBanco(1);
 
     				if (!empty($creImg->getDadosBanco(1)) && !empty($creImg->getDadosBanco(2)) && !empty($creImg->getDadosBanco(4))) {
     					if ((($creImg->getDadosBanco(5) == 'image/gif') || ($creImg->getDadosBanco(5) == 'image/jpeg') || ($creImg->getDadosBanco(5) == 'image/pjpeg') || ($creImg->getDadosBanco(5) == 'image/png')) && ($creImg->getDadosBanco(6) > 0) && ($creImg->getDadosBanco(6) <= GW_MAXFILESIZE))  {
@@ -56,3 +56,32 @@
                     }
 				}
 ?>	
+        </article>
+        <article>
+            <hr />
+            <form enctype="multipart/form-data" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+                <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo GW_MAXFILESIZE; ?>" />
+                <fieldset>
+                    <label>Título</label>
+                    <input type="text" name="titulo">
+                </fieldset>
+                <fieldset>
+                    <label>Categoria</label>
+                    <input type="text" name="categoria">
+                </fieldset>
+                <fieldset>
+                    <label >Descrição</label>
+                    <textarea name="descricao" id="" cols="30" rows="10"></textarea>
+                </fieldset>
+                <fieldset>
+                    <label>Imagem upload</label>
+                    <input type="file" name="imagemUpload"/>
+                </fieldset>
+                <fieldset>
+                    <hr />
+                    <input type="submit" value="Add" name="submit" />
+                </fieldset>
+               
+            </form>
+        </article>
+    </section>

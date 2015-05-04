@@ -9,7 +9,7 @@ class CreateImageModel extends ComandosDB
 	private $comandosSQL;
 
 	//strings sql
-	private $inserirDados = "posts (titulo, categoria, descricao, imagem) VALUES ('$titulo', '$categoria', '$descricao', '$imagemUpload')";
+	private $inserirDados; 
 
 	// dados para o banco
 	private $titulo;
@@ -23,41 +23,42 @@ class CreateImageModel extends ComandosDB
 	private $apontarCaminho;
 
 	public function __construct(){
-		this->$comandosSQL = new ComandosDB();
+		
 	}
 
 	public function getComandosSQL(){
-		this->$comandosSQL->setInserirDadosSQL(this->$inserirDados);
-		return this->$comandosSQL->getInserirDadosSQL();
+		$this->inserirDados = "posts (titulo, categoria, descricao, imagem) VALUES ('$this->titulo', '$this->categoria', '$this->descricao', '$this->imagemUpload')";
+		parent::setInserirDadosSQL($this->inserirDados);
+		return parent::getInserirDadosSQL();
 	}
 
 	public function setDadosBanco($titulo, $categoria, $descricao, $imagemUpload, $imagemUpload_tipo, $imagemUpload_tamanho){
-		this->$titulo = $titulo;
-		this->$categoria = $categoria;
-		this->$descricao = $descricao;
-		this->$imagemUpload = $imagemUpload;
-		this->$imagemUpload_tipo = $imagemUpload_tipo;
-		this->$imagemUpload_tamanho = $imagemUpload_tamanho;
+		$this->titulo = $titulo;
+		$this->categoria = $categoria;
+		$this->descricao = $descricao;
+		$this->imagemUpload = $imagemUpload;
+		$this->imagemUpload_tipo = $imagemUpload_tipo;
+		$this->imagemUpload_tamanho = $imagemUpload_tamanho;
 	}
 	public function getDadosBanco($selecaoNum){
 		switch ($selecaoNum) {
 			case 1:
-				$DBanco = $titulo;
+				$DBanco = $this->titulo;
 				break;
 			case 2:
-				$DBanco = $categoria;
+				$DBanco = $this->categoria;
 				break;
 			case 3:
-				$DBanco = $descricao;
+				$DBanco = $this->descricao;
 				break;
 			case 4:
-				$DBanco = $imagemUpload;
+				$DBanco = $this->imagemUpload;
 				break;
 			case 5:
-				$DBanco = $imagemUpload_tipo;
+				$DBanco = $this->imagemUpload_tipo;
 				break;
 			case 6:
-				$DBanco = $imagemUpload_tamanho;
+				$DBanco = $this->imagemUpload_tamanho;
 				break;
 
 			default:
@@ -67,8 +68,8 @@ class CreateImageModel extends ComandosDB
 		return $DBanco;
 	}
 	public function getApontarCaminho(){
-		this->$apontarCaminho = GW_UPLOADPATH . $imagemUpload;
-		return this->$apontarCaminho;
+		$this->apontarCaminho = GW_UPLOADPATH . $this->imagemUpload;
+		return $this->apontarCaminho;
 	}
 
 }

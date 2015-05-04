@@ -6,6 +6,6 @@
   define('DB_NAME', 'photoboxzero');
 
   // caminho para pasta de upload
-  define('GW_UPLOADPATH', 'views/image_upload/');
+  define('GW_UPLOADPATH', '../image_upload/');
   define('GW_MAXFILESIZE', 524288);      // 512 KB
 ?>

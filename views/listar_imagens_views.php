@@ -4,13 +4,14 @@
       <a href="administra_imagem.php">Remover</a>
 			<hr />
 			<?php 
-				require_once('appvariaveis.php');
-				require_once('conecta_db.php');
+				require_once('config.php');
+        require_once('models/comandosDB_model.php');
+        $conexaoDB = new ComandosDb();
+			
 
-				$conexaoDB = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+				$conexaoDB->setListarDadosSQL("");
 
-				$query = "SELECT * FROM posts";
-				$data = mysqli_query($conexaoDB, $query);
+				$data = mysqli_query($conexaoDB->getConexaoDB, $conexaoDB->getListarDadosSQL());
 
 				// Percorrer a matriz de dados , formatá-lo como HTML
   				echo '<table>';
@@ -22,8 +23,8 @@
   				  echo '<span class="score">' . $row['titulo'] . '</span><br />';
   				  echo '<strong>Categoria:</strong> ' . $row['categoria'] . '<br />';
   				  echo '<strong>Descrição:</strong> ' . $row['descricao'] . '</td>';
-  				  if (is_file(GW_UPLOADPATH . $row['imagem']) && filesize(GW_UPLOADPATH . $row['imagem']) > 0) {
-  				    echo '<td><img src="' . GW_UPLOADPATH . $row['imagem'] . '" alt="Score image" /></td></tr>';
+  				  if (is_file('views/image_upload/' . $row['imagem']) && filesize('views/image_upload/' . $row['imagem']) > 0) {
+  				    echo '<td><img src="' . 'views/image_upload/' . $row['imagem'] . '" alt="Score image" /></td></tr>';
   				  }
   				  else {
   				    echo '<td>nao existe imagem</td></tr>';
