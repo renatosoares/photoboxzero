@@ -1,6 +1,9 @@
 <?php
 include '../head.php';
 include '../header.php';
+print(getcwd());
+echo "<br >";
+print(dirname(__FILE__));
 ?>
 	<section>	
 		<article>
