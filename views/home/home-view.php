@@ -1,8 +1,7 @@
 	<section>
 		<article>
-			<a href="adicionar_imagem.php">Adicionar</a>
-      <a href="administra_imagem.php">Remover</a>
-			<hr />
+		
+			
 			<?php echo "hello world!";
 		/*
         $conexaoDB = new ComandosDb();

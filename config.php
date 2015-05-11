@@ -8,6 +8,9 @@
   // Caminho para a raiz
 	define( 'ABSPATH', dirname( __FILE__ ) );
 
+  // URL da home
+define( 'HOME_URI', 'http://127.0.0.1/photoboxzero' );
+
   // caminho para pasta de upload
   define('GW_UPLOADPATH', ABSPATH . '/views/image_upload/');
   define('GW_MAXFILESIZE', 524288);      // 512 KB

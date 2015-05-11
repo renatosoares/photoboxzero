@@ -1,3 +1,4 @@
 <?php
-require_once 'config.php';
+$liberaPagina = "index";
+require_once 'config.php';		
 ?>

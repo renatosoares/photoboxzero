@@ -4,8 +4,11 @@
 
 // Funções globais
 require_once ABSPATH . '/functions/global-functions.php';
-
+$photoboxMVC = new PhotoboxMVC();
 // Carrega a aplicação
-$photoboxMVC = new PhotoBoxMVC();
+if ($liberaPagina == "index") {
+	$photoboxMVC->index();
+} elseif($liberaPagina == "administra"){
+	$photoboxMVC->administra();
+}
 
-?>

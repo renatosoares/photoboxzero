@@ -23,12 +23,29 @@ class PhotoboxMVC
 
 	function __construct()
 	{
+		
+
 		require_once ABSPATH . '/controllers/home-controller.php';
+		require_once ABSPATH . '/controllers/admin-controller.php';
+
+
+		return;
+	}
+	public function index()
+	{
 		$this->controlador = new HomeController();
+		$this->controlador->index();
+		return;
+	}
+	public function administra(){
+		
+		$this->controlador = new AdminController();
 		$this->controlador->index();
 
 		return;
 	}
+
+
 }
 
 
