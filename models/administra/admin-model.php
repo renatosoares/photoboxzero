@@ -25,7 +25,7 @@ class AdminModel extends MainModel
 	function __construct(){
 		// Configura o controlador
 		$this->comandosSQL = new PhotoboxDB();
-		$this->cmdDB = new PhotoboxDB();
+		$this->cmdDB = new PhotoboxDB();		
 	}
 
 	public function getComandosSQL(){
