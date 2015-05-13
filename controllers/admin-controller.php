@@ -6,7 +6,7 @@ class AdminController extends MainController
 {
 	
 	public function index(){
-		$this->title = 'Administração';
+		$this->title = 'Photobox: Administração';
 
 		//$modelo = $this->load_model('noticias/noticias-adm-model');
 

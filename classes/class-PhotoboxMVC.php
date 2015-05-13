@@ -21,18 +21,13 @@ class PhotoboxMVC
 	//caminho da página não encontrada
 	private $not_found = '/includes/404.php';
 
-	function __construct()
-	{
-		
-
+	function __construct(){
 		require_once ABSPATH . '/controllers/home-controller.php';
 		require_once ABSPATH . '/controllers/admin-controller.php';
 
-
 		return;
 	}
-	public function index()
-	{
+	public function index(){
 		$this->controlador = new HomeController();
 		$this->controlador->index();
 		return;

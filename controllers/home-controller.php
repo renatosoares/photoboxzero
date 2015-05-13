@@ -9,7 +9,10 @@ class HomeController extends MainController
 	 */
     public function index() {
 		// Título da página
-		$this->title = 'Home';
+
+		$this->cmdDB = new PhotoboxDB();
+		$this->cmdDB->setListarDadosSQL("");
+		$this->title = 'Photobox';
 	
 		// Essa página não precisa de modelo (model)
 		
@@ -20,12 +23,13 @@ class HomeController extends MainController
 		
 		// /views/_includes/menu.php
         require ABSPATH . '/views/_includes/header-menu.php';
-		
+
 		// /views/home/home-view.php
         require ABSPATH . '/views/home/home-view.php';
 		
 		// /views/_includes/footer.php
         require ABSPATH . '/views/_includes/footer.php';
+        mysqli_close($this->cmdDB->getConexaoDB());
 		
     } // index
 }
