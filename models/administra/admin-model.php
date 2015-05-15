@@ -73,7 +73,7 @@ class AdminModel extends MainModel
 	}
 
 	public function listar_imagens(){
-
+			echo "listar imagens aqui";
 	}
 
 	public function editar_imagens(){
@@ -135,12 +135,12 @@ class AdminModel extends MainModel
 				}
 	}
 	public function apaga_imagens(){
-				if (isset($_GET['id']) && isset($_GET['titulo']) && isset($_GET['categoria']) && isset($_GET['descricao']) && isset($_GET['imagem'])) {
+				if (isset($_GET['id']) && isset($_GET['titulo']) &&/* isset($_GET['categoria']) && isset($_GET['descricao']) && */isset($_GET['imagem'])) {
 					// pegue os dados do GET
 					$id = $_GET['id'];
 					$titulo = $_GET['titulo'];
-					$categoria = $_GET['categoria'];
-					$descricao = $_GET['descricao'];
+				//	$categoria = $_GET['categoria'];
+				//	$descricao = $_GET['descricao'];
 					$imagemUpload = $_GET['imagem'];
 				} else if (isset($_POST['id']) && isset($_POST['titulo'])) {
 					$id = $_POST['id'];
@@ -153,12 +153,15 @@ class AdminModel extends MainModel
 						// delete a imagem do servidor
 						@unlink(GW_UPLOADPATH . $imagemUpload);
 
-						$conexaoDB = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+						//$conexaoDB = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+						$this->cmdDB = parent::getBanco();
 
 						// delete as informações do banco
-						$query = "DELETE FROM posts WHERE id = $id LIMIT 1";
-						mysqli_query($conexaoDB, $query);
-						mysqli_close($conexaoDB);
+						//$query = "DELETE FROM posts WHERE id = $id LIMIT 1";
+						//mysqli_query($conexaoDB, $query);
+						//mysqli_close($conexaoDB);
+						$this->dados = parent::getDadosDelete($this->cmdDB);
+						mysqli_close($this->cmdDB->getConexaoDB());
 
 						// Confirmar sucesso com o usuário
 						echo '<p>A imagem com esse título ' . $titulo .', e com essa ID '. $id .', foi removido com sucesso.</p>';
@@ -166,14 +169,13 @@ class AdminModel extends MainModel
 					}else{
 						echo '<p>A imagem não foi removida</p>';
 					}
-				} else if (isset($id) && isset($titulo) && isset($categoria) && isset($descricao)) {
+				} else if (isset($id) && isset($titulo) /*&& isset($categoria) && isset($descricao)*/) {
     				echo '<p>Tem certeza de que deseja excluir a seguinte imagem?</p>';
     				echo '	<p>	
-    							<strong>Título: </strong>' . 	$titulo . '<br />
-    							<strong>ID: </strong>' . 		$id .'<br />
-    							<strong>Score: </strong>' . 	$categoria . '
-    						</p>';
-    				echo '<form method="post" action="remove_imagem.php">';
+    										<strong>Título: </strong>' . 	$titulo . '<br />
+    										<strong>ID: </strong>' . 		$id .'<br />  		
+    								</p>';
+    				echo '<form method="post" action="' . HOME_URI . '/administra.php">';
 
     				echo '<input type="radio" name="confirm" value="Yes" /> Yes ';
     				echo '<input type="radio" name="confirm" value="No" checked="checked" /> No <br />';
@@ -181,7 +183,7 @@ class AdminModel extends MainModel
     				echo '<input type="submit" value="Submit" name="submit" />';
     				echo '<input type="hidden" name="id" value="' . 		$id . '" />';
     				echo '<input type="hidden" name="titulo" value="' . 	$titulo . '" />';
-    				echo '<input type="hidden" name="categoria" value="' . 	$categoria . '" />';
+    				//echo '<input type="hidden" name="categoria" value="' . 	$categoria . '" />';
     				echo '</form>';
   				}
 			

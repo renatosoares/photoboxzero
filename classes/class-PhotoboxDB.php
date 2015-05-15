@@ -16,6 +16,13 @@ class PhotoboxDB
 	public function getInserirDadosSQL(){
 		return $this->query;
 	}
+	public function setDeleteDadosSQL($query){
+		$this->query = "DELETE FROM posts WHERE id = $id LIMIT 1";
+		$this->query .= $query;
+	}
+	public function getDeleteDadosSQL(){
+		return $this->query;
+	}
 
 	public function getConexaoDB(){
 		return $this->conexaoDB;
@@ -28,5 +35,8 @@ class PhotoboxDB
 	public function getListarDadosSQL(){
 		return $this->query;
 	}
-	
+
+	public function getFechaConexao(){
+		mysqli_close($this->conexaoDB);
+	}
 } // Class PhotoboxDB

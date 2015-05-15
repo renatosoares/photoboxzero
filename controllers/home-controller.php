@@ -9,9 +9,11 @@ class HomeController extends MainController
 	 */
     public function index() {
 		// Título da página
+    
+		$this->cmdDB = parent::getBanco();
+		
+		$this->dados = parent::getDados($this->cmdDB);
 
-		$this->cmdDB = new PhotoboxDB();
-		$this->cmdDB->setListarDadosSQL("");
 		$this->title = 'Photobox';
 	
 		// Essa página não precisa de modelo (model)
@@ -29,8 +31,7 @@ class HomeController extends MainController
 		
 		// /views/_includes/footer.php
         require ABSPATH . '/views/_includes/footer.php';
-        mysqli_close($this->cmdDB->getConexaoDB());
-		
+       	mysqli_close($this->cmdDB->getConexaoDB()); 
     } // index
 }
 ?>
