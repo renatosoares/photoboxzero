@@ -142,9 +142,11 @@ class AdminModel extends MainModel
 				//	$categoria = $_GET['categoria'];
 				//	$descricao = $_GET['descricao'];
 					$imagemUpload = $_GET['imagem'];
-				} else if (isset($_POST['id']) && isset($_POST['titulo'])) {
+				} elseif (isset($_POST['id']) && isset($_POST['titulo'])) {
 					$id = $_POST['id'];
 					$titulo = $_POST['titulo'];
+					$imagemUpload = $_POST['imagem'];
+					//$imagemUpload = $_POST['imagemUpload']; //$_FILES['imagemUpload']['name'], $_FILES['imagemUpload']['type']
 				} else {
 					echo '<p>Desculpe, o arquivo não foi especificado para remover.</p>';
 				}
@@ -154,17 +156,22 @@ class AdminModel extends MainModel
 						@unlink(GW_UPLOADPATH . $imagemUpload);
 
 						//$conexaoDB = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-						$this->cmdDB = parent::getBanco();
+						
 
 						// delete as informações do banco
 						//$query = "DELETE FROM posts WHERE id = $id LIMIT 1";
 						//mysqli_query($conexaoDB, $query);
 						//mysqli_close($conexaoDB);
-						$this->dados = parent::getDadosDelete($this->cmdDB);
-						mysqli_close($this->cmdDB->getConexaoDB());
+						//	$this->cmdDB = parent::getBanco();
+        		//	$this->dados = parent::getDadosDelete($this->cmdDB);
+						$cmdDB = new AdminController();
+						//$dados = 
+						$cmdDB->getDadosDelete($cmdDB->getBanco(), $id);
+
+						mysqli_close($cmdDB->getBanco()->getConexaoDB());
 
 						// Confirmar sucesso com o usuário
-						echo '<p>A imagem com esse título ' . $titulo .', e com essa ID '. $id .', foi removido com sucesso.</p>';
+						echo '<p>A imagem com esse título ' .  GW_UPLOADPATH . " " .  $imagemUpload . "<< CAMINHO" . $titulo .', e com essa ID '. $id .', foi removido com sucesso.</p>';
 
 					}else{
 						echo '<p>A imagem não foi removida</p>';
@@ -183,6 +190,7 @@ class AdminModel extends MainModel
     				echo '<input type="submit" value="Submit" name="submit" />';
     				echo '<input type="hidden" name="id" value="' . 		$id . '" />';
     				echo '<input type="hidden" name="titulo" value="' . 	$titulo . '" />';
+    				echo '<input type="hidden" name="imagem" value="' . $imagemUpload . '" />';
     				//echo '<input type="hidden" name="categoria" value="' . 	$categoria . '" />';
     				echo '</form>';
   				}
