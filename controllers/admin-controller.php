@@ -22,11 +22,14 @@ class AdminController extends MainController
 
         require ABSPATH . '/models/administra/admin-model.php';
         $this->bancoCRUD = new AdminModel();
+
         	if (isset($_POST['submit']) && $_POST['submit'] == "Add") {
         		$this->bancoCRUD->inserir_imagens();
-        	}elseif (isset($_GET['id']) || isset($_POST['submit']) && $_POST['confirm'] == 'Yes') {
+        	}elseif (isset($_GET['id']) && $_GET['tipoacao'] == 'deletar' || isset($_POST['submit']) && $_POST['confirm'] == 'Yes') {
         	
         			$this->bancoCRUD->apaga_imagens();
+        	} elseif (isset($_GET['id']) && $_GET['tipoacao'] == 'atualizar') {
+        		echo "atualizar ........................";
         	}
 
 		

@@ -78,6 +78,59 @@ class AdminModel extends MainModel
 
 	public function editar_imagens(){
 
+		if (isset($_GET['id']) && isset($_GET['titulo']) && isset($_GET['categoria']) && isset($_GET['descricao']) && isset($_GET['imagem'])) {
+			// pegue os dados do GET
+			
+			$id = $_GET['id'];
+			$titulo = $_GET['titulo'];
+			$categoria = $_GET['categoria'];
+			$descricao = $_GET['descricao'];
+			$imagemUpload = $_GET['imagem'];
+
+		} elseif (isset($_POST['id']) && isset($_POST['titulo'])) {
+			
+			$id = $_POST['id'];
+			$titulo = $_POST['titulo'];
+			$categoria = $_POST['categoria'];
+			$descricao = $_POST['descricao'];
+							
+		} else {
+			echo '<p>Desculpe, o arquivo não foi especificado para atualizar.</p>';
+		}
+		if (isset($_POST['submit'])) {
+			if ($_POST['confirm'] == 'Yes'){
+				// delete a imagem do servidor
+				//@unlink(GW_UPLOADPATH . $imagemUpload);
+				$cmdDB = new AdminController();
+				$cmdDB->getDadosAtualizar($cmdDB->getBanco(), $id, $titulo, $categoria, $descricao);
+				mysqli_close($cmdDB->getBanco()->getConexaoDB());
+
+				// Confirmar sucesso com o usuário
+				echo '<p>A imagem com esse título ' . $titulo .', e com essa ID '. $id .', foi atualizada com sucesso.</p>';
+
+				}else{
+					echo '<p>A imagem não foi atualizada</p>';
+				}
+		} else if (isset($id) && isset($titulo) /*&& isset($categoria) && isset($descricao)*/) {
+    		echo '<p>Tem certeza de que deseja excluir a seguinte imagem?</p>';
+    		echo '	<p>	
+    								<img src="' . GW_UPLOADPATH . $imagemUpload . '" />	
+    						</p>';
+    		echo '<form method="post" action="' . HOME_URI . '/administra.php">';
+
+   			echo '<input type="radio" name="confirm" value="Yes" /> Yes ';
+   			echo '<input type="radio" name="confirm" value="No" checked="checked" /> No <br />';
+
+    		echo '<input type="submit" value="Submit" name="submit" />';
+    		echo '<input type="hidden" name="id" value="' . 				$id . '" />';
+    		echo '<input type="hidden" name="titulo" value="' . 		$titulo . '" />';
+    		echo '<input type="hidden" name="categoria" value="' . 	$categoria . '" />';
+    		echo '<input type="hidden" name="descricao" value="' . 	$descricao . '" />';
+    		echo '<input type="hidden" name="imagem" value="' . 		$imagemUpload . '" />';
+    				
+    		echo '</form>';
+  				}
+
 	}
 	public function inserir_imagens(){
 
