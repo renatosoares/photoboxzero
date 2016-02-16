@@ -2,7 +2,7 @@
   // Define database connection constants
   define('DB_HOST', 'localhost');
   define('DB_USER', 'root');
-  define('DB_PASSWORD', '');
+  define('DB_PASSWORD', 'geladeira123');
   define('DB_NAME', 'photoboxzero');
 
   // Caminho para a raiz

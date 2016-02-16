@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- <link rel="stylesheet" href="views/_css/custom.css" > -->
-	<?php header('Charset=UTF-8'); ?> 	
-	<meta charset="UTF-8" >
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<html lang="en">
+  <head>
+		<?php header('Charset=UTF-8'); ?>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title><?php echo $this->title; ?></title>
 
-	    <!-- Bootstrap core CSS -->
-    <!-- <link href="css/bootstrap.css" rel="stylesheet"> -->
-    <!-- Add custom CSS here -->
-    <link href="views/_css/bootstrap_slidefolio.css" rel="stylesheet" >
-    <link href="views/_css/slidefolio.css" rel="stylesheet" >
+    <!-- Bootstrap -->
+    <link href="views/_css/bootstrap.min.css" rel="stylesheet">
+    <link href="views/_css/font-awesome.min.css" rel="stylesheet">
 
-	<!-- Font Awesome -->
-    <link href="views/_fonts/font-awesome.min.css" rel="stylesheet">
 
-	<title><?php echo $this->title; ?></title>
-</head>
-<body>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
