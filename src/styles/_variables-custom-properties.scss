@@ -1,0 +1,8 @@
+:root {
+  --grid-breakpoints-xs: #{map-get($grid-breakpoints, xs)};
+  --grid-breakpoints-sm: #{map-get($grid-breakpoints, sm)};
+  --grid-breakpoints-md: #{map-get($grid-breakpoints, md)};
+  --grid-breakpoints-lg: #{map-get($grid-breakpoints, lg)};
+  --grid-breakpoints-xl: #{map-get($grid-breakpoints, xl)};
+  --grid-breakpoints-xxl: #{map-get($grid-breakpoints, xxl)};
+}
