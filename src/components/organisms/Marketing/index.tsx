@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./styles.scss";
+
 const Marketing = () => {
   return (
     <div className="container marketing">

@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./styles.scss";
+
 const Hero = () => {
   return (
     <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
