@@ -1,18 +1,18 @@
 import React from "react";
 
-import PostProps from "models/types/PostProps";
+import publicationProps from "models/types/publicationProps";
 
 type CollectionProps = {
-  posts: PostProps[];
+  publications: publicationProps[];
 };
 
-const Collection = ({ posts }: CollectionProps) => {
+const Collection = ({ publications }: CollectionProps) => {
   return (
     <div className="collection">
       <div className="container">
-        {posts.map((post) => (
-          <div className="post-content">
-            <img src={post.image} />
+        {publications.map((publication) => (
+          <div className="post-content" key={publication.mediaId}>
+            <img src={publication.image} />
           </div>
         ))}
       </div>

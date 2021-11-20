@@ -2,19 +2,19 @@ import React, { useEffect, useState } from "react";
 
 import HomePage from "components/pages/Home";
 
-import { getPosts } from "hooks/posts";
-import PostProps from "models/types/PostProps";
+import { getPublications } from "hooks/publications";
+import publicationProps from "models/types/publicationProps";
 
 const Home = () => {
-  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [publications, setPublications] = useState<publicationProps[]>([]);
 
   useEffect(() => {
     (async () => {
-      setPosts(await getPosts());
+      setPublications(await getPublications());
     })();
   }, []);
 
-  return <HomePage posts={posts} />;
+  return <HomePage publications={publications} />;
 };
 
 export default Home;

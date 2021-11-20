@@ -6,22 +6,22 @@ import Header from "components/organisms/Header";
 // import Footer from "components/organisms/Footer";
 import Hero from "components/atoms/Hero";
 import Collection from "components/molecules/Collection";
-import PostProps from "models/types/PostProps";
+import publicationProps from "models/types/publicationProps";
 // import Marketing from "components/organisms/Marketing";
 // import Emphasis from "components/organisms/Emphasis";
 // import BoxEmphasis from "components/organisms/BoxEmphasis";
 
 type HomeProps = {
-  posts: PostProps[];
+  publications: publicationProps[];
 };
 
-const Home = ({ posts }: HomeProps) => {
+const Home = ({ publications }: HomeProps) => {
   return (
     <>
       <Header />
       <main>
         <Hero />
-        <Collection posts={posts} />
+        <Collection publications={publications} />
         {/* <Emphasis /> */}
         {/* <BoxEmphasis /> */}
         {/* <hr className="my-5" /> */}

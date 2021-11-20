@@ -9,10 +9,16 @@ type ApiPublicationAttributesProps = {
   [key: string]: unknown;
 };
 
-type ApiPostProps = {
-  id: string;
-  attributes: ApiPublicationAttributesProps;
+type ApiPublicationRelationshipsProps = {
+  media: { data: { attributes: { full_url: string; id: number } } };
   [key: string]: unknown;
 };
 
-export default ApiPostProps;
+type ApiPublicationProps = {
+  id: string;
+  attributes: ApiPublicationAttributesProps;
+  relationships: ApiPublicationRelationshipsProps;
+  [key: string]: unknown;
+};
+
+export default ApiPublicationProps;

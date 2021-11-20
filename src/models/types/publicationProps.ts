@@ -1,4 +1,4 @@
-type PostProps = {
+type publicationProps = {
   id: number;
   image: string;
   title: string;
@@ -7,4 +7,4 @@ type PostProps = {
   mediaId?: number;
 };
 
-export default PostProps;
+export default publicationProps;
