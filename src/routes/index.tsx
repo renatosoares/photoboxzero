@@ -1,4 +1,5 @@
 import Login from "components/pages/Login";
+import { useAuth } from "hooks/use-auth";
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -10,7 +11,8 @@ type PrivateRouteProps = {
 };
 
 function PrivateRoute({ children, ...rest }: PrivateRouteProps) {
-  let auth = { user: false };
+  const auth = useAuth();
+
   return (
     <Route
       {...rest}

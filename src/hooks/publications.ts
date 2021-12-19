@@ -4,7 +4,7 @@ import publicationProps from "models/types/publicationProps";
 const BASE_URI = process.env.REACT_APP_BASE_URI_API;
 
 export const highlightPublications = async () => {
-  const publicationsResponse = fetch(`${BASE_URI}public/publication`);
+  const publicationsResponse = fetch(`${BASE_URI}collective/publication`);
 
   const [publications] = await Promise.all([publicationsResponse]);
 
