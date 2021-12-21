@@ -21,21 +21,29 @@ export const useAuth = (): AuthContextProps => {
 
 function useProvideAuth() {
   const [user, setUser] = useState<UserProps | null>();
+  const [email, setEmail] = useState<string>("");
   const [dataToken, setDataToken] = useState<DataTokenProps>();
 
   const signin = (email: string, password: string) => {
     const response = oauthToken.signInWithEmailAndPassword(email, password);
     response.then((r) => {
       setDataToken(r);
-      oauthToken
-        .retrieveUserWithEmail(email)
-        .then((responseUser) => setUser(responseUser));
+      setEmail(email);
     });
   };
 
   useEffect(() => {
-    dataToken && oauthToken.storeOauthToken(dataToken);
-  }, [dataToken]);
+    if (dataToken) {
+      oauthToken.storeOauthToken(dataToken);
+
+      if (email) {
+        // TODO - precisará ser adicionado na sessão ou no local storage.
+        oauthToken.retrieveUserWithEmail(email).then((responseUser) => {
+          setUser(responseUser);
+        });
+      }
+    }
+  }, [dataToken, email]);
 
   return {
     user,

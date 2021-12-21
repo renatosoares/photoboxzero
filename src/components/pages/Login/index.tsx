@@ -36,10 +36,11 @@ const Login = () => {
     from: { pathname: "/" },
   };
 
-  const handleSubmit = () => {
-    // TODO - fazer a chamada do login e depois redirecionar.
-    history.replace(from);
-  };
+  useEffect(() => {
+    if (auth.user) {
+      history.replace(from);
+    }
+  }, [auth.user]);
 
   return (
     <div className="d-flex">
