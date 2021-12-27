@@ -13,22 +13,6 @@ const Login = () => {
   const [inputPassword, setInputPassword] = useState("");
   const auth = useAuth();
 
-  const handleChangeEmail = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    let value = event.currentTarget?.value || "";
-
-    setInputEmail(value);
-  };
-
-  const handleChangePassword = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    let value = event.currentTarget?.value || "";
-
-    setInputPassword(value);
-  };
-
   let history = useHistory();
   let location = useLocation<UseLocationLoginProps>();
 
@@ -57,7 +41,7 @@ const Login = () => {
             id="floatingInput"
             placeholder="name@example.com"
             value={inputEmail}
-            onChange={handleChangeEmail}
+            onChange={(event) => setInputEmail(event.target.value)}
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
@@ -68,7 +52,7 @@ const Login = () => {
             placeholder="Password"
             type="password"
             value={inputPassword}
-            onChange={handleChangePassword}
+            onChange={(event) => setInputPassword(event.target.value)}
           />
           <label htmlFor="floatingPassword">Password</label>
         </div>

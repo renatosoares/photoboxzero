@@ -38,22 +38,6 @@ export const createUserWithEmailAndPassword = (
   // TODO
 };
 
-export const retrieveUserWithEmail = async (
-  email: string
-): Promise<UserProps> => {
-  const dataToken = retrieveOauthToken();
-  const response = await fetch(`${BASE_URI}user/${email}`, {
-    method: "GET",
-    headers: {
-      Authorization: `${dataToken.token_type} ${dataToken.access_token}`,
-      "content-type": "application/json",
-      Accept: "application/json",
-    },
-  });
-
-  return response.json();
-};
-
 export const signOut = () => {
   // TODO
 };
