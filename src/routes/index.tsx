@@ -1,3 +1,4 @@
+import Darkroom from "components/pages/Darkroom";
 import Login from "components/pages/Login";
 import { useAuth } from "hooks/use-auth";
 import React from "react";
@@ -42,7 +43,7 @@ const AppRoutes = () => (
         <Login />
       </Route>
       <PrivateRoute path="/darkroom/:user">
-        <div>darkroom</div>
+        <Darkroom />
       </PrivateRoute>
     </Switch>
   </>
