@@ -3,6 +3,8 @@ import { retrieveOauthToken } from "hooks/oauth-token";
 
 import "./styles.scss";
 
+const BASE_URI = process.env.REACT_APP_BASE_URI_API;
+
 const Darkroom = () => {
   const refFileInput = useRef<HTMLInputElement>(null);
   const dataToken = retrieveOauthToken();
@@ -17,16 +19,14 @@ const Darkroom = () => {
       `${dataToken.token_type} ${dataToken.access_token}`
     );
 
+    const FILES = refFileInput.current?.files || new FileList();
+
     const FORM_DATA = new FormData();
 
-    // TODO enviar vários dados de uma vez
-    if (refFileInput.current?.files) {
-      FORM_DATA.append(
-        "media_file",
-        refFileInput.current.files[0],
-        "picsum.jpg"
-      );
-    }
+    Object.keys(FILES).forEach((key) => {
+      const FILE = FILES[Number(key)];
+      FORM_DATA.append("media_files[]", FILE, FILE.name);
+    });
 
     // TODO pegar esses dados do form
     FORM_DATA.append(
@@ -39,13 +39,14 @@ const Darkroom = () => {
       })
     );
 
-    // TODO pegar o valor da url do env
-    fetch("http://photobox.d3v/api/media", {
+    var myRequest = new Request(`${BASE_URI}media`, {
       method: "POST",
       headers: SUBMIT_HEADERS,
       body: FORM_DATA,
-    })
-      .then((response) => response.text())
+    });
+
+    fetch(myRequest)
+      .then((response) => response.json())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
