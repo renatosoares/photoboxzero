@@ -1,0 +1,16 @@
+.hero {
+  align-items: center;
+  background-image: var(--hero-bg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 205px;
+  width: 100%;
+
+  .title {
+    color: #fff;
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba($color: #000000, $alpha: 0.59);
+  }
+}
