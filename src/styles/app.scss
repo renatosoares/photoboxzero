@@ -1,0 +1,10 @@
+// vendor
+@import "bootstrap/scss/bootstrap.scss";
+
+// global
+@import "variables";
+@import "mixins";
+@import "globals";
+
+// components
+@import "components/collection";
