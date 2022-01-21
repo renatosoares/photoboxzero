@@ -3,8 +3,11 @@
 
 // global
 @import "variables";
+@import "variables-custom-properties";
 @import "mixins";
 @import "globals";
 
 // components
 @import "components/collection";
+@import "components/footer";
+@import "components/hero";
