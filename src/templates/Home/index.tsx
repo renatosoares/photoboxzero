@@ -1,13 +1,13 @@
 import React from "react";
 
-// import "./styles.scss";
-
 import Hero from "components/Hero";
 import Collection from "components/Collection";
 import PublicationProps from "types/publication-props";
 // import Marketing from "components/Marketing";
 // import Emphasis from "components/Emphasis";
 // import BoxEmphasis from "components/BoxEmphasis";
+
+import styles from "./Home.module.scss";
 
 type HomeProps = {
   publications: PublicationProps[];
