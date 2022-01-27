@@ -1,3 +1,5 @@
 export default {
-  baseUriApi: process.env.NEXT_PUBLIC_BASE_URI_API,
+  BASE_URI_API: process.env.NEXT_PUBLIC_BASE_URI_API,
+  CLIENT_ID: process.env.NEXT_PUBLIC_CLIENT_ID,
+  CLIENT_SECRET: process.env.NEXT_PUBLIC_CLIENT_SECRET,
 };

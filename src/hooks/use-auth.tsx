@@ -1,7 +1,7 @@
-import AuthContext from "context/AuthContext";
-import AuthContextProps from "models/types/AuthContextProps";
-import DataTokenProps from "models/types/DataTokenProps";
-import UserProps from "models/types/UserProps";
+import AuthContext from "contexts/AuthContext";
+import AuthContextProps from "types/auth-context-props";
+import DataTokenProps from "types/data-token-props";
+import UserProps from "types/user-props";
 import React, { useState, useEffect, useContext, createContext } from "react";
 import objectIsEmpty from "utils/objectIsEmpty";
 import * as oauthToken from "./oauth-token";

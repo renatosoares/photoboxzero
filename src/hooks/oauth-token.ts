@@ -1,10 +1,7 @@
-import DataTokenProps from "models/types/DataTokenProps";
-import UserProps from "models/types/UserProps";
+import DataTokenProps from "types/data-token-props";
+import UserProps from "types/user-props";
 import { useState } from "react";
-
-const BASE_URI = process.env.REACT_APP_BASE_URI_API;
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+import config from "config";
 
 export const signInWithEmailAndPassword = async (
   email: string,
@@ -12,14 +9,14 @@ export const signInWithEmailAndPassword = async (
 ): Promise<DataTokenProps> => {
   const body = {
     grant_type: "password",
-    client_id: CLIENT_ID,
-    client_secret: CLIENT_SECRET,
+    client_id: config.CLIENT_ID,
+    client_secret: config.CLIENT_SECRET,
     username: email,
     password: password,
     scope: "",
   };
 
-  const response = await fetch(`${BASE_URI}oauth/token`, {
+  const response = await fetch(`${config.BASE_URI_API}oauth/token`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

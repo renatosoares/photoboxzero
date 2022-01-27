@@ -4,7 +4,7 @@ import PublicationProps from "types/publication-props";
 
 export const highlightPublications = async () => {
   const publicationsResponse = fetch(
-    `${config.baseUriApi}collective/publication`
+    `${config.BASE_URI_API}collective/publication`
   );
 
   const [publications] = await Promise.all([publicationsResponse]);
