@@ -1,13 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { retrieveOauthToken } from "hooks/oauth-token";
+import config from "config";
 
 import styles from "./Darkroom.module.scss";
-
-const BASE_URI = process.env.REACT_APP_BASE_URI_API;
+import { useEffect } from "react";
+import * as DataTokenProps from "types/data-token-props";
 
 const Darkroom = () => {
+  const [dataToken, setDataToken] = useState<DataTokenProps.default>(
+    DataTokenProps.defaultProps
+  );
+
   const refFileInput = useRef<HTMLInputElement>(null);
-  const dataToken = retrieveOauthToken();
+
+  useEffect(() => {
+    setDataToken(retrieveOauthToken());
+  }, []);
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -39,7 +47,7 @@ const Darkroom = () => {
       })
     );
 
-    var myRequest = new Request(`${BASE_URI}media`, {
+    var myRequest = new Request(`${config.BASE_URI_API}media`, {
       method: "POST",
       headers: SUBMIT_HEADERS,
       body: FORM_DATA,
