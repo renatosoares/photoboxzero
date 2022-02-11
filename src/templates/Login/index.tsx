@@ -1,32 +1,12 @@
-import { useAuth } from "hooks/use-auth";
-import React, { useEffect, useState } from "react";
-// import { useHistory, useLocation } from "react-router";
-
-// type UseLocationLoginProps = {
-//   from: { pathname: string };
-// };
+import React, { useState } from "react";
 
 const Login = () => {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-  const auth = useAuth();
-
-  // let history = useHistory();
-  // let location = useLocation<UseLocationLoginProps>();
-
-  // let { from }: UseLocationLoginProps = location.state || {
-  //   from: { pathname: "/" },
-  // };
-
-  // useEffect(() => {
-  //   if (auth.user) {
-  //     history.replace(from);
-  //   }
-  // }, [auth.user]);
 
   return (
     <div className="d-flex">
-      <main className="form-signin">
+      <form className="form-signin">
         <div className="mb-4">
           <i className="bi bi-person-circle"></i>
         </div>
@@ -60,14 +40,9 @@ const Login = () => {
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>
-        <button
-          className="w-100 btn btn-lg btn-primary"
-          onClick={() => auth.signin(inputEmail, inputPassword)}
-        >
-          Sign in
-        </button>
+        <button className="w-100 btn btn-lg btn-primary">Sign in</button>
         <p className="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-      </main>
+      </form>
     </div>
   );
 };

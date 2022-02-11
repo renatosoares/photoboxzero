@@ -1,15 +1,12 @@
 import "styles/app.scss";
 import type { AppProps } from "next/app";
-import Layout from "components/Layout";
-import { ProvideAuth } from "hooks/use-auth";
+import Layout from "layouts/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ProvideAuth>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ProvideAuth>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
 
