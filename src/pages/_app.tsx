@@ -1,13 +1,16 @@
 import "styles/app.scss";
 import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
 import Layout from "layouts/Layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={pageProps.session} refetchInterval={0}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }
 
-export default MyApp;
+export default App;

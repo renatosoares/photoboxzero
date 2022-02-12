@@ -1,6 +1,4 @@
 import DataTokenProps from "types/data-token-props";
-import UserProps from "types/user-props";
-import { useState } from "react";
 import config from "config";
 
 export const signInWithEmailAndPassword = async (
@@ -49,12 +47,4 @@ export const confirmPasswordReset = (code: string, password: string) => {
 
 export const onAuthStateChanged = (callback: () => {}): (() => {}) => {
   return callback;
-};
-
-export const storeOauthToken = (dataToken: DataTokenProps) => {
-  localStorage.setItem("data_token", JSON.stringify(dataToken));
-};
-
-export const retrieveOauthToken = (): DataTokenProps => {
-  return JSON.parse(localStorage.getItem("data_token") || "{}");
 };
