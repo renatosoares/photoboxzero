@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Login = () => {
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
-
+const Login = ({ csrfToken }) => {
   return (
     <div className="d-flex">
-      <form className="form-signin">
+      <form
+        className="form-signin"
+        method="post"
+        action="/api/auth/callback/credentials"
+      >
+        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <div className="mb-4">
           <i className="bi bi-person-circle"></i>
         </div>
@@ -14,12 +16,11 @@ const Login = () => {
 
         <div className="form-floating">
           <input
+            name="username"
             type="email"
             className="form-control"
             id="floatingInput"
             placeholder="name@example.com"
-            value={inputEmail}
-            onChange={(event) => setInputEmail(event.target.value)}
           />
           <label htmlFor="floatingInput">Email address</label>
         </div>
@@ -29,8 +30,7 @@ const Login = () => {
             id="floatingPassword"
             placeholder="Password"
             type="password"
-            value={inputPassword}
-            onChange={(event) => setInputPassword(event.target.value)}
+            name="password"
           />
           <label htmlFor="floatingPassword">Password</label>
         </div>
@@ -40,7 +40,9 @@ const Login = () => {
             <input type="checkbox" value="remember-me" /> Remember me
           </label>
         </div>
-        <button className="w-100 btn btn-lg btn-primary">Sign in</button>
+        <button className="w-100 btn btn-lg btn-primary" type="submit">
+          Sign in
+        </button>
         <p className="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
       </form>
     </div>
