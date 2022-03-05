@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { retrieveOauthToken } from "hooks/oauth-token";
 import config from "config";
 
 import styles from "./Darkroom.module.scss";
@@ -7,15 +6,7 @@ import { useEffect } from "react";
 import * as DataTokenProps from "types/data-token-props";
 
 const Darkroom = () => {
-  const [dataToken, setDataToken] = useState<DataTokenProps.default>(
-    DataTokenProps.defaultProps
-  );
-
   const refFileInput = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    setDataToken(retrieveOauthToken());
-  }, []);
 
   const handleSubmit = (event: React.SyntheticEvent) => {
     event.preventDefault();

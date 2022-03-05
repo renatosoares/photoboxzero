@@ -1,8 +1,20 @@
+import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
 import HeaderStyles from "./Header.module.scss";
 
 const Header = () => {
+  const { data: session } = useSession();
+
+  const handleSignOut = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    signOut();
+  };
+
+  const handleSignIn = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    signIn();
+  };
   return (
     <header className={`header ${HeaderStyles.header}`}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -33,6 +45,20 @@ const Header = () => {
                   Link
                 </a>
               </li>
+              {!session && (
+                <li>
+                  <a href="#" className="nav-link" onClick={handleSignIn}>
+                    Entrar
+                  </a>
+                </li>
+              )}
+              {session && (
+                <li>
+                  <a href="#" className="nav-link" onClick={handleSignOut}>
+                    Sair
+                  </a>
+                </li>
+              )}
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"

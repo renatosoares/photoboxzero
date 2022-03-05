@@ -31,18 +31,22 @@ export const createUserWithEmailAndPassword = (
   password: string
 ) => {
   // TODO
+  throw new Error("The function has not been implemented.");
 };
 
 export const signOut = () => {
   // TODO
+  throw new Error("The function has not been implemented.");
 };
 
 export const sendPasswordResetEmail = (email: string) => {
   // TODO
+  throw new Error("The function has not been implemented.");
 };
 
 export const confirmPasswordReset = (code: string, password: string) => {
   // TODO
+  throw new Error("The function has not been implemented.");
 };
 
 export const onAuthStateChanged = (callback: () => {}): (() => {}) => {

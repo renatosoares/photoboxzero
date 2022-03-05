@@ -24,18 +24,29 @@ export default NextAuth({
         const user = await apiUser.retrieve(response);
 
         if (user) {
-          return user;
+          return { ...user, response };
         } else {
           return null;
         }
       },
     }),
   ],
-  theme: {
-    colorScheme: "light",
-  },
   callbacks: {
-    async jwt({ token }) {
+    async session({ session, token }) {
+      session.customer = token.customer;
+      session.dataToken = token.dataToken;
+
+      return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.name = user.data.attributes.name;
+        token.email = user.data.attributes.email;
+        token.dataToken = user.data.response;
+        delete user.response;
+        token.user = user;
+      }
+
       return token;
     },
   },
