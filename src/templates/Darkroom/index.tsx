@@ -1,14 +1,45 @@
-import React, { useRef, useState } from "react";
-import config from "config";
-
+import React, { useEffect, useRef, useState } from "react";
+import CONFIG from "config";
 import styles from "./Darkroom.module.scss";
-import { useEffect } from "react";
 import * as DataTokenProps from "types/data-token-props";
 
-const Darkroom = () => {
+type DarkroomProps = {
+  dataToken: DataTokenProps.default;
+};
+
+const Darkroom = ({ dataToken }: DarkroomProps) => {
   const refFileInput = useRef<HTMLInputElement>(null);
+  const [loading, setLoading] = useState(false);
+  const [requestMessage, setRequestMessage] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    const toastEl = document.querySelector(".toast");
+    if (typeof document !== undefined) {
+      const bootstrap = require("bootstrap/dist/js/bootstrap");
+      const toastComponent = new bootstrap.Toast(toastEl);
+
+      setShowToast((prevState) => {
+        if (prevState) {
+          toastComponent.show();
+        }
+        return false;
+      });
+
+      const eventHiddenBsToast = (event) => {
+        setRequestMessage("");
+      };
+
+      toastEl?.addEventListener("hidden.bs.toast", eventHiddenBsToast);
+
+      return () => {
+        toastEl?.removeEventListener("hidden.bs.toast", eventHiddenBsToast);
+      };
+    }
+  }, [showToast]);
 
   const handleSubmit = (event: React.SyntheticEvent) => {
+    setLoading(true);
     event.preventDefault();
 
     const SUBMIT_HEADERS = new Headers();
@@ -38,16 +69,24 @@ const Darkroom = () => {
       })
     );
 
-    var myRequest = new Request(`${config.BASE_URI_API}media`, {
+    const MEDIA_REQUEST = new Request(`${CONFIG.BASE_URI_API}media`, {
       method: "POST",
       headers: SUBMIT_HEADERS,
       body: FORM_DATA,
     });
 
-    fetch(myRequest)
+    fetch(MEDIA_REQUEST)
       .then((response) => response.json())
-      .then((result) => console.log(result))
-      .catch((error) => console.log("error", error));
+      .then(() => {
+        setRequestMessage("Load images success!");
+        setShowToast(true);
+        setLoading(false);
+      })
+      .catch(() => {
+        setRequestMessage("Load images failed!");
+        setShowToast(true);
+        setLoading(false);
+      });
   };
 
   return (
@@ -59,7 +98,7 @@ const Darkroom = () => {
             <form onSubmit={handleSubmit} encType="multipart/form-data">
               <div className="mb-3">
                 <label htmlFor="formFileMultiple" className="form-label">
-                  Multiple files input example
+                  Load Multiple files
                 </label>
                 <input
                   className="form-control"
@@ -69,8 +108,38 @@ const Darkroom = () => {
                   multiple
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
-                Sign in
+
+              <div
+                className="position-fixed bottom-0 end-0 p-3"
+                style={{ zIndex: 11 }}
+              >
+                <div
+                  id="liveToast"
+                  className="toast"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
+                  <div className="toast-header">
+                    {/* <img src="..." className="rounded me-2" alt="..."> */}
+                    <strong className="me-auto">Bootstrap</strong>
+                    <small>11 mins ago</small>
+                    <button
+                      type="button"
+                      className="btn-close"
+                      data-bs-dismiss="toast"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div className="toast-body">{requestMessage}</div>
+                </div>
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Load"}
               </button>
             </form>
           </div>

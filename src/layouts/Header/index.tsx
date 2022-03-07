@@ -1,4 +1,5 @@
 import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 import HeaderStyles from "./Header.module.scss";
@@ -19,9 +20,9 @@ const Header = () => {
     <header className={`header ${HeaderStyles.header}`}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            Navbar
-          </a>
+          <Link href={{ pathname: "/" }} passHref>
+            <a className="navbar-brand">Navbar</a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"

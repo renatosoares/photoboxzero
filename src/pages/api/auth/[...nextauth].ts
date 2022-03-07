@@ -9,10 +9,7 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
+      credentials: {},
       async authorize(credentials, req) {
         const { username, password } = credentials;
 
@@ -33,7 +30,7 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      session.customer = token.customer;
+      session.user = token.user;
       session.dataToken = token.dataToken;
 
       return session;
@@ -42,9 +39,9 @@ export default NextAuth({
       if (user) {
         token.name = user.data.attributes.name;
         token.email = user.data.attributes.email;
-        token.dataToken = user.data.response;
+        token.dataToken = user.response;
         delete user.response;
-        token.user = user;
+        token.user = user.data;
       }
 
       return token;
