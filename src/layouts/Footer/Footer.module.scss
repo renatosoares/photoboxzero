@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+.footer {
+  background-color: palegreen;
+
+  @include media-breakpoint-up(xl) {
+    background-color: purple;
+  }
+}

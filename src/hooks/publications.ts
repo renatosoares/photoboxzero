@@ -1,10 +1,11 @@
-import ApiPublicationProps from "models/types/ApiPublicationProps";
-import publicationProps from "models/types/publicationProps";
-
-const BASE_URI = process.env.REACT_APP_BASE_URI_API;
+import config from "config";
+import ApiPublicationProps from "types/api-publication-props";
+import PublicationProps from "types/publication-props";
 
 export const highlightPublications = async () => {
-  const publicationsResponse = fetch(`${BASE_URI}collective/publication`);
+  const publicationsResponse = fetch(
+    `${config.BASE_URI_API}collective/publication`
+  );
 
   const [publications] = await Promise.all([publicationsResponse]);
 
@@ -13,11 +14,11 @@ export const highlightPublications = async () => {
   return publicationsJson;
 };
 
-export const getPublications = async (): Promise<publicationProps[]> => {
+export const getPublications = async (): Promise<PublicationProps[]> => {
   const highlight = await highlightPublications();
 
   const publications = highlight.data.map(
-    (publication: ApiPublicationProps): publicationProps => {
+    (publication: ApiPublicationProps): PublicationProps => {
       return {
         id: publication.attributes.id,
         title: publication.attributes.title,
