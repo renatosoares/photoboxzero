@@ -1,0 +1,12 @@
+.collection {
+  background-color: red;
+  @include media-breakpoint-up(xl) {
+  }
+
+  .wrapPublication {
+    .publicationContent {
+      img {
+      }
+    }
+  }
+}
