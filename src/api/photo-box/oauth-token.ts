@@ -1,5 +1,5 @@
 import DataTokenProps from "types/data-token-props";
-import config from "config";
+import APP from "config/app";
 
 export const signInWithEmailAndPassword = async (
   email: string,
@@ -7,14 +7,14 @@ export const signInWithEmailAndPassword = async (
 ): Promise<DataTokenProps> => {
   const body = {
     grant_type: "password",
-    client_id: config.CLIENT_ID,
-    client_secret: config.CLIENT_SECRET,
+    client_id: APP.client_id,
+    client_secret: APP.client_secret,
     username: email,
     password: password,
     scope: "",
   };
 
-  const response = await fetch(`${config.BASE_URI_API}oauth/token`, {
+  const response = await fetch(`${APP.base_uri_api}/oauth/token`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

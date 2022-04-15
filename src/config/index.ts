@@ -1,7 +1,0 @@
-const CONFIG = {
-  BASE_URI_API: process.env.NEXT_PUBLIC_BASE_URI_API,
-  CLIENT_ID: process.env.CREDENTIALS_CLIENT_ID,
-  CLIENT_SECRET: process.env.CREDENTIALS_CLIENT_SECRET,
-};
-
-export default CONFIG;

@@ -2,8 +2,8 @@ import NextAuth from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import * as oauthToken from "api/oauth-token";
-import * as apiUser from "api/user";
+import * as oauthToken from "api/photo-box/oauth-token";
+import * as apiUser from "api/photo-box/user";
 
 export default NextAuth({
   providers: [

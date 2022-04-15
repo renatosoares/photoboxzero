@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import CONFIG from "config";
+import APP from "config/app";
 import styles from "./Darkroom.module.scss";
 import * as DataTokenProps from "types/data-token-props";
 
@@ -62,14 +62,14 @@ const Darkroom = ({ dataToken }: DarkroomProps) => {
     FORM_DATA.append(
       "custom_properties",
       JSON.stringify({
-        title: "Lagoa",
-        description: "Lagoa azul pastel",
-        keywords: ["lagoa", " azul", "água"],
-        author: "Mr. Sebastian Green",
+        title: "Lorem",
+        description: "Lorem, ipsum dolor sit amet.",
+        keywords: ["lorem", "ipsum", "dolor", "sit", "amet"],
+        author: "Benedito Silas",
       })
     );
 
-    const MEDIA_REQUEST = new Request(`${CONFIG.BASE_URI_API}media`, {
+    const MEDIA_REQUEST = new Request(`${APP.base_uri_api}/media`, {
       method: "POST",
       headers: SUBMIT_HEADERS,
       body: FORM_DATA,

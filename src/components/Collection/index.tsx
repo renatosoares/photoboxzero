@@ -16,9 +16,12 @@ const Collection = ({ publications }: CollectionProps) => {
         {publications.map((publication) => (
           <div
             className={`publication-content m-2 ${CollectionStyles.publicationContent}`}
-            key={publication.mediaId}
+            key={publication.relationships.media.data.attributes.id}
           >
-            <img src={publication.image} />
+            <img
+              src={publication.relationships.media.data.attributes.full_url}
+              alt="photo_box"
+            />
           </div>
         ))}
       </div>
