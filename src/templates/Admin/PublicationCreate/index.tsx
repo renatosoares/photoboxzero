@@ -4,7 +4,7 @@ type PublicationProps = {
   csrfToken: string;
 };
 
-const Publication = ({ csrfToken }: PublicationProps) => {
+const PublicationCreate = ({ csrfToken }: PublicationProps) => {
   const eventOnSubmit = (event: React.FormEvent) => {
     console.log(event);
   };
@@ -17,4 +17,4 @@ const Publication = ({ csrfToken }: PublicationProps) => {
   );
 };
 
-export default Publication;
+export default PublicationCreate;

@@ -1,23 +1,21 @@
-import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
-import { getCsrfToken } from "next-auth/react";
-import Publication from "templates/Admin/Publication";
+import { GetServerSideProps, NextPage } from "next";
+import PublicationIndex from "templates/Admin/PublicationIndex";
+import PublicationProps from "types/publication-props";
 
 type PublicationPageProps = {
-  csrfToken: string;
+  publications: PublicationProps[];
 };
 
 const PublicationPage: NextPage<PublicationPageProps> = (
   props: PublicationPageProps
 ) => {
-  return <Publication csrfToken={props.csrfToken} />;
+  return <PublicationIndex publications={props.publications} />;
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
-      csrfToken: await getCsrfToken(context),
+      publications: [],
     },
   };
 };
