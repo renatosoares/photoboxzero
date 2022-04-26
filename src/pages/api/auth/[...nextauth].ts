@@ -3,7 +3,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import * as oauthToken from "api/photo-box/oauth-token";
-import * as apiUser from "api/photo-box/user";
 
 export default NextAuth({
   providers: [
@@ -18,10 +17,8 @@ export default NextAuth({
           password
         );
 
-        const user = await apiUser.retrieve(response);
-
-        if (user) {
-          return { ...user, response };
+        if (response?.access_token) {
+          return response;
         } else {
           return null;
         }
@@ -30,18 +27,17 @@ export default NextAuth({
   ],
   callbacks: {
     async session({ session, token }) {
-      session.user = token.user;
       session.dataToken = token.dataToken;
 
       return session;
     },
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
+      console.log("====================================");
+      console.log(account);
+      console.log("====================================");
       if (user) {
-        token.name = user.data.attributes.name;
-        token.email = user.data.attributes.email;
         token.dataToken = user.response;
         delete user.response;
-        token.user = user.data;
       }
 
       return token;
