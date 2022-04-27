@@ -1,7 +1,9 @@
 import React from "react";
+import MediaProps from "types/media-props";
 
 type PublicationProps = {
   csrfToken: string;
+  media: MediaProps[];
 };
 
 const PublicationCreate = ({ csrfToken }: PublicationProps) => {
