@@ -1,5 +1,10 @@
-import React from "react";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import React from "react";
+
+import * as ApiPublication from "api/photo-box/admin/publication";
+import DataTokenProps from "types/data-token-props";
 import MediaProps from "types/media-props";
 
 type PublicationProps = {
@@ -8,10 +13,47 @@ type PublicationProps = {
 };
 
 const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
+  const { data: session } = useSession();
+  const router = useRouter();
+
   const [selectedMediaId, setSelectedMediaId] = useState(0);
 
-  const eventOnSubmit = (event: React.FormEvent) => {
-    console.log(event.currentTarget);
+  const eventOnSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const elements = (event.target as HTMLFormElement)
+      .elements as HTMLFormControlsCollection;
+
+    console.log(elements);
+
+    const elementValue = (nameItem: string): string => {
+      return (elements.namedItem(nameItem) as HTMLInputElement)?.value;
+    };
+
+    // TODO pegar de forma dinâmica.
+    const params = {
+      title: elementValue("title"),
+      slug: elementValue("slug"),
+      media_id: elementValue("media_id"),
+      active: elementValue("active"),
+      body: elementValue("body"),
+      publish_at: elementValue("publish_at"),
+    };
+
+    if (session) {
+      const publicationResponse = await ApiPublication.create(
+        session.dataToken as DataTokenProps,
+        params
+      );
+
+      if (publicationResponse?.id) {
+        router.push({
+          pathname: "/admin/publication",
+        });
+      } else {
+        console.error(publicationResponse);
+      }
+    }
   };
 
   const eventOnClickMedia = (event: React.MouseEvent<HTMLImageElement>) => {
