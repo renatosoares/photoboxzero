@@ -24,8 +24,6 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
     const elements = (event.target as HTMLFormElement)
       .elements as HTMLFormControlsCollection;
 
-    console.log(elements);
-
     const elementValue = (nameItem: string): string => {
       return (elements.namedItem(nameItem) as HTMLInputElement)?.value;
     };
@@ -35,7 +33,7 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
       title: elementValue("title"),
       slug: elementValue("slug"),
       media_id: elementValue("media_id"),
-      active: elementValue("active"),
+      active: (elements.namedItem("active") as HTMLInputElement).checked,
       body: elementValue("body"),
       publish_at: elementValue("publish_at"),
     };
@@ -46,7 +44,7 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
         params
       );
 
-      if (publicationResponse?.id) {
+      if (publicationResponse?.data?.id) {
         router.push({
           pathname: "/admin/publication",
         });
@@ -82,6 +80,7 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
         <textarea name="metadata" />
         <input name="publish_at" type="datetime-local" required />
         <input name="unpublish_at" type="datetime-local" />
+        <button type="submit">Create</button>
       </form>
     </div>
   );

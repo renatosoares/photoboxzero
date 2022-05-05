@@ -1,12 +1,16 @@
 import APP from "config/app";
 import DataTokenProps from "types/data-token-props";
+import ErrorsValidationFields from "types/api/photo-box/errors-validation-fields-props";
 import PublicationProps from "types/publication-props";
+import ExceptionResponse from "types/api/photo-box/exception-response";
 
 export const create = async (
   dataToken: DataTokenProps,
   params: object
-): Promise<PublicationProps | null> => {
-  let card = null;
+): Promise<
+  { data: PublicationProps } | ErrorsValidationFields | ExceptionResponse | null
+> => {
+  let publication = null;
 
   const response = await fetch(`${APP.base_uri_api}/publication`, {
     method: "POST",
@@ -18,7 +22,7 @@ export const create = async (
     body: JSON.stringify(params),
   });
 
-  card = response.json();
+  publication = response.json();
 
-  return card;
+  return publication;
 };
