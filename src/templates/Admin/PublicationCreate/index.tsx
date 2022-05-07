@@ -6,6 +6,7 @@ import React from "react";
 import * as ApiPublication from "api/photo-box/admin/publication";
 import DataTokenProps from "types/data-token-props";
 import MediaProps from "types/media-props";
+import PublicationCreateStyles from "./PublicationCreate.module.scss";
 
 type PublicationProps = {
   csrfToken: string;
@@ -28,7 +29,6 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
       return (elements.namedItem(nameItem) as HTMLInputElement)?.value;
     };
 
-    // TODO pegar de forma dinâmica.
     const params = {
       title: elementValue("title"),
       slug: elementValue("slug"),
@@ -59,17 +59,23 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
   };
 
   return (
-    <div>
-      {media.map((m) => {
-        return (
-          <img
-            src={m.attributes.full_url}
-            key={m.id}
-            data-media-id={m.attributes.id}
-            onClick={eventOnClickMedia}
-          />
-        );
-      })}
+    <div className="publication-create container-fluid">
+      <div className="d-flex flex-wrap justify-content-start">
+        {media.map((m) => {
+          return (
+            <div
+              key={m.id}
+              className={`box-image m-2 ${PublicationCreateStyles.boxImage}`}
+            >
+              <img
+                src={m.attributes.full_url}
+                data-media-id={m.attributes.id}
+                onClick={eventOnClickMedia}
+              />
+            </div>
+          );
+        })}
+      </div>
       <form onSubmit={eventOnSubmit}>
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <input name="title" type="text" placeholder="Title" required />
