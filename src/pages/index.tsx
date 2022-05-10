@@ -1,20 +1,14 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import HomeTemplate from "templates/Home";
-import { useEffect, useState } from "react";
 import PublicationProps from "types/publication-props";
-import { getPublications } from "hooks/publications";
+import * as ApiPublication from "api/photo-box/collective/publication";
 
-const Home: NextPage = () => {
-  const [publications, setPublications] = useState<PublicationProps[]>([]);
+type HomePageProps = {
+  publications: PublicationProps[];
+};
 
-  useEffect(() => {
-    (async () => {
-      setPublications(await getPublications());
-    })();
-  }, []);
+const HomePage: NextPage<HomePageProps> = (props: HomePageProps) => {
   return (
     <>
       <Head>
@@ -22,9 +16,17 @@ const Home: NextPage = () => {
         <meta name="description" content="photo stock" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomeTemplate publications={publications} />
+      <HomeTemplate publications={props.publications} />
     </>
   );
 };
 
-export default Home;
+export const getServerSideProps: GetServerSideProps = async () => {
+  return {
+    props: {
+      publications: (await ApiPublication.index()).data,
+    },
+  };
+};
+
+export default HomePage;

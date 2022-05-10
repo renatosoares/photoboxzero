@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -11,17 +11,12 @@ const Header = () => {
     event.preventDefault();
     signOut();
   };
-
-  const handleSignIn = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
-    signIn();
-  };
   return (
     <header className={`header ${HeaderStyles.header}`}>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link href={{ pathname: "/" }} passHref>
-            <a className="navbar-brand">Navbar</a>
+            <a className="navbar-brand fw-bold fst-italic">PhotoBox</a>
           </Link>
           <button
             className="navbar-toggler"
@@ -36,77 +31,28 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Link
-                </a>
-              </li>
-              {!session && (
+              {session ? (
+                <>
+                  <li>
+                    <a href="#" className="nav-link" onClick={handleSignOut}>
+                      Sair
+                    </a>
+                  </li>
+
+                  <li>
+                    <Link href={{ pathname: "/admin/darkroom" }} passHref>
+                      <a className="nav-link">Carregar Imagens</a>
+                    </Link>
+                  </li>
+                </>
+              ) : (
                 <li>
-                  <a href="#" className="nav-link" onClick={handleSignIn}>
-                    Entrar
-                  </a>
+                  <Link href={{ pathname: "/login" }} passHref>
+                    <a className="nav-link">Entrar</a>
+                  </Link>
                 </li>
               )}
-              {session && (
-                <li>
-                  <a href="#" className="nav-link" onClick={handleSignOut}>
-                    Sair
-                  </a>
-                </li>
-              )}
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled">Disabled</a>
-              </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
           </div>
         </div>
       </nav>
