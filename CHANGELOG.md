@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://github.com/renatosoares/photoboxzero.git/commits/Unreleased) - 2022-00-00
 
+## [0.4.0](https://github.com/renatosoares/photoboxzero.git/commits/0.4.0) - 2022-05-10
+
+### Added
+
+- Create publication.
+
 ## [0.3.0](https://github.com/renatosoares/photoboxzero.git/commits/0.3.0) - 2022-02-08
 
 ### Changed
