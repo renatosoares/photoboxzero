@@ -1,61 +1,44 @@
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
 import React from "react";
 
 import HeaderStyles from "./Header.module.scss";
 
 const Header = () => {
-  const { data: session } = useSession();
-
   const handleSignOut = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     signOut();
   };
   return (
-    <header className={`header ${HeaderStyles.header}`}>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div className="container-fluid">
-          <Link href={{ pathname: "/" }} passHref>
-            <a className="navbar-brand fw-bold fst-italic">PhotoBox</a>
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              {session ? (
-                <>
-                  <li>
-                    <a href="#" className="nav-link" onClick={handleSignOut}>
-                      Sair
-                    </a>
-                  </li>
-
-                  <li>
-                    <Link href={{ pathname: "/admin/darkroom" }} passHref>
-                      <a className="nav-link">Carregar Imagens</a>
-                    </Link>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link href={{ pathname: "/login" }} passHref>
-                    <a className="nav-link">Entrar</a>
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </div>
+    <header
+      className={`header navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ${HeaderStyles.header}`}
+    >
+      <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+        Company name
+      </a>
+      <button
+        className="navbar-toggler position-absolute d-md-none collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <input
+        className="form-control form-control-dark w-100"
+        type="text"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <div className="navbar-nav">
+        <div className="nav-item text-nowrap">
+          <a className="nav-link px-3" href="#" onClick={handleSignOut}>
+            Sign out
+          </a>
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
