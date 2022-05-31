@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { getCsrfToken, getSession } from "next-auth/react";
-import AdminIndex from "templates/Admin/AdminIndex";
+import Dashboard from "templates/Admin/Dashboard";
 import DataTokenProps from "types/data-token-props";
 
 type AdminPageProps = {
@@ -8,7 +8,7 @@ type AdminPageProps = {
 };
 
 const AdminPage: NextPage<AdminPageProps> = (props: AdminPageProps) => {
-  return <AdminIndex />;
+  return <Dashboard />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (

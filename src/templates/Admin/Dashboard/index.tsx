@@ -2,7 +2,7 @@ import DataList from "components/DataList";
 import NavMenu from "components/NavMenu";
 import ReportHeader from "components/ReportHeader";
 
-const AdminIndex = () => {
+const Dashboard = () => {
   return (
     <>
       <div className="container-fluid">
@@ -19,4 +19,4 @@ const AdminIndex = () => {
   );
 };
 
-export default AdminIndex;
+export default Dashboard;
