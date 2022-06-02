@@ -1,4 +1,5 @@
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
 import React from "react";
 
 import HeaderStyles from "./Header.module.scss";
@@ -12,9 +13,11 @@ const Header = () => {
     <header
       className={`header navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow ${HeaderStyles.header}`}
     >
-      <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-        PhotoBox
-      </a>
+      <Link href={{ pathname: "/admin" }} passHref>
+        <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
+          PhotoBox
+        </a>
+      </Link>
       <button
         className="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
