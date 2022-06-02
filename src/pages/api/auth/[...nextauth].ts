@@ -31,10 +31,9 @@ export default NextAuth({
 
       return session;
     },
-    async jwt({ token, user }) {
-      if (user) {
-        token.dataToken = user.response;
-        delete user.response;
+    async jwt({ token, user: dataToken }) {
+      if (dataToken) {
+        token.dataToken = dataToken;
       }
 
       return token;
