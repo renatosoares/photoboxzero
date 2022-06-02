@@ -3,11 +3,13 @@ import { getCsrfToken, getSession } from "next-auth/react";
 import Dashboard from "templates/Admin/Dashboard";
 import DataTokenProps from "types/data-token-props";
 
-type AdminPageProps = {
+type DashboardPageProps = {
   csrfToken: string;
 };
 
-const AdminPage: NextPage<AdminPageProps> = (props: AdminPageProps) => {
+const DashboardPage: NextPage<DashboardPageProps> = (
+  props: DashboardPageProps
+) => {
   return <Dashboard />;
 };
 
@@ -17,6 +19,8 @@ export const getServerSideProps: GetServerSideProps = async (
   const session = await getSession(context);
   const dataToken = session?.dataToken as DataTokenProps;
 
+  console.log(dataToken);
+
   return {
     props: {
       csrfToken: await getCsrfToken(context),
@@ -24,4 +28,4 @@ export const getServerSideProps: GetServerSideProps = async (
   };
 };
 
-export default AdminPage;
+export default DashboardPage;
