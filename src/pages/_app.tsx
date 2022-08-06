@@ -1,25 +1,40 @@
 import "styles/app.scss";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
-import { useEffect } from "react";
-import type { NextPageWithLayout } from "types/next-page-with-layout";
+import Layout from "layouts/Layout";
+import { useEffect, useState } from "react";
+import { ProvideReportHeader as ProvideReportHeaderContext } from "contexts/ReportHeaderContext";
 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+function App({ Component, pageProps }: AppProps) {
+  const [contextReportHeaderTitle, setContextReportHeaderTitle] = useState<
+    string | null
+  >(null);
 
-function App({ Component, pageProps }: AppPropsWithLayout) {
+  const [contextReportHeaderActions, setContextReportHeaderActions] = useState(
+    []
+  );
+
   useEffect(() => {
     if (typeof document !== undefined) {
       require("bootstrap/dist/js/bootstrap.bundle.js");
     }
   }, []);
 
-  const getLayout = Component.getLayout ?? ((page) => page);
+  useEffect(() => {
+    setContextReportHeaderTitle(pageProps.contextReportHeader?.title);
+    setContextReportHeaderActions(pageProps.contextReportHeader?.actions);
+  }, [pageProps.contextReportHeader]);
 
-  return getLayout(
+  return (
     <SessionProvider session={pageProps.session} refetchInterval={0}>
-      <Component {...pageProps} />
+      <ProvideReportHeaderContext
+        title={contextReportHeaderTitle}
+        actions={contextReportHeaderActions}
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ProvideReportHeaderContext>
     </SessionProvider>
   );
 }

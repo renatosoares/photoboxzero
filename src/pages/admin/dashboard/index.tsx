@@ -1,23 +1,18 @@
-import type { ReactElement } from "react";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { getCsrfToken, getSession } from "next-auth/react";
 import Dashboard from "templates/Admin/Dashboard";
 import DataTokenProps from "types/data-token-props";
-import type { NextPageWithLayout } from "types/next-page-with-layout";
-import Layout from "layouts/Layout";
+import ReportHeaderContextProps from "types/report-header-context-props";
 
 type DashboardPageProps = {
   csrfToken: string;
+  contextReportHeader: ReportHeaderContextProps;
 };
 
-const DashboardPage: NextPageWithLayout<DashboardPageProps> = (
+const DashboardPage: NextPage<DashboardPageProps> = (
   props: DashboardPageProps
 ) => {
   return <Dashboard />;
-};
-
-DashboardPage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
 };
 
 export const getServerSideProps: GetServerSideProps = async (
@@ -31,6 +26,9 @@ export const getServerSideProps: GetServerSideProps = async (
   return {
     props: {
       csrfToken: await getCsrfToken(context),
+      contextReportHeader: {
+        title: "dashboard",
+      },
     },
   };
 };
