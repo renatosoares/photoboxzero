@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
       return (
         <>
           <Header />
-          <div className="container-fluid">
+          <div className="container-fluid mb-5 pb-5">
             <div className="row">
               <NavMenu />
               <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
