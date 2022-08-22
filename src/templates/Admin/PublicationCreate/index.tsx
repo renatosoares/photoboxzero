@@ -67,6 +67,7 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
               key={m.id}
               className={`box-image m-2 ${PublicationCreateStyles.boxImage}`}
             >
+              {/* TODO as imagens deve se listadas em tamanhos padrões e ao clicar exibir em modal com a opção de selecionar */}
               <img
                 src={m.attributes.full_url}
                 data-media-id={m.attributes.id}

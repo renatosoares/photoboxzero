@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./NavMenu.module.scss";
 
 const NavMenu = () => {
   return (
@@ -71,8 +72,8 @@ const NavMenu = () => {
               </a>
             </Link>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -86,8 +87,8 @@ const NavMenu = () => {
               Orders
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className={`nav-link disabled`} href="#" aria-disabled="true">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -101,8 +102,8 @@ const NavMenu = () => {
               Products
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -116,8 +117,8 @@ const NavMenu = () => {
               Customers
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -131,8 +132,8 @@ const NavMenu = () => {
               Reports
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -155,8 +156,8 @@ const NavMenu = () => {
           </a>
         </h6>
         <ul className="nav flex-column mb-2">
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -171,8 +172,8 @@ const NavMenu = () => {
               Current month
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -187,8 +188,8 @@ const NavMenu = () => {
               Last quarter
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -203,8 +204,8 @@ const NavMenu = () => {
               Social engagement
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">
+          <li className={`nav-item ${styles.cursorNotAllowed}`}>
+            <a className="nav-link disabled" href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
