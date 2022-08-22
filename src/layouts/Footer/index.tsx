@@ -8,7 +8,9 @@ const FooterWrap = styled.footer`
 
 const Footer = () => {
   return (
-    <FooterWrap className={`footer mt-auto py-3 w-100 ${styles.footer}`}>
+    <FooterWrap
+      className={`footer mt-auto py-3 w-100 fixed-bottom ${styles.footer}`}
+    >
       <div className="container">
         <span className="text-muted">Place sticky footer content here.</span>
       </div>
