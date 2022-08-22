@@ -14,28 +14,24 @@
 
 // -----------------------------------------------------------------------------
 
-body {
-  font-size: .875rem;
-}
-
-.feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
-}
-
 /*
  * Sidebar
  */
 
 .sidebar {
+  .nav-link {
+    .icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-bottom;
+    }
+  }
+}
+
+.sidebar {
   position: fixed;
   top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
   bottom: 0;
-  /* rtl:remove */
   left: 0;
   z-index: 100; /* Behind the navbar */
   padding: 48px 0 0; /* Height of navbar */
@@ -62,7 +58,7 @@ body {
   color: #333;
 }
 
-.sidebar .nav-link .feather {
+.sidebar .nav-link .icon {
   margin-right: 4px;
   color: #727272;
 }
@@ -71,8 +67,8 @@ body {
   color: #2470dc;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+.sidebar .nav-link:hover .icon,
+.sidebar .nav-link.active .icon {
   color: inherit;
 }
 

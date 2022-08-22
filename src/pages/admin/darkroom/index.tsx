@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { GetServerSideProps, GetServerSidePropsContext, NextPage } from "next";
 import { getSession } from "next-auth/react";
 import DarkroomTemplate from "templates/Darkroom";
 import DataTokenProps from "types/data-token-props";
@@ -13,7 +13,9 @@ const DarkroomPage: NextPage<DarkroomPageProps> = (
   return <DarkroomTemplate dataToken={props.dataToken} />;
 };
 
-export async function getServerSideProps(context) {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   const session = await getSession(context);
 
   return {
@@ -21,6 +23,6 @@ export async function getServerSideProps(context) {
       dataToken: session?.dataToken,
     },
   };
-}
+};
 
 export default DarkroomPage;

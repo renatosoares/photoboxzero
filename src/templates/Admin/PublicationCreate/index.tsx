@@ -67,6 +67,7 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
               key={m.id}
               className={`box-image m-2 ${PublicationCreateStyles.boxImage}`}
             >
+              {/* TODO as imagens deve se listadas em tamanhos padrões e ao clicar exibir em modal com a opção de selecionar */}
               <img
                 src={m.attributes.full_url}
                 data-media-id={m.attributes.id}
@@ -76,18 +77,111 @@ const PublicationCreate = ({ csrfToken, media }: PublicationProps) => {
           );
         })}
       </div>
-      <form onSubmit={eventOnSubmit}>
-        <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-        <input name="title" type="text" placeholder="Title" required />
-        <input name="slug" type="text" placeholder="Slug" required />
-        <input name="media_id" type="hidden" defaultValue={selectedMediaId} />
-        <textarea name="body" />
-        <input name="active" type="checkbox" />
-        <textarea name="metadata" />
-        <input name="publish_at" type="datetime-local" required />
-        <input name="unpublish_at" type="datetime-local" />
-        <button type="submit">Create</button>
-      </form>
+      <div className="sticky-bottom text-bg-dark p-3 container">
+        <form className="row g-3" onSubmit={eventOnSubmit}>
+          <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
+          <input
+            name="media_id"
+            type="hidden"
+            className="form-control"
+            id="input-media-id"
+            defaultValue={selectedMediaId}
+          />
+          <div className="col-md-6">
+            <label htmlFor="input-title" className="form-label">
+              Title
+            </label>
+            <input
+              name="title"
+              type="text"
+              className="form-control"
+              id="input-title"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="input-slug" className="form-label">
+              Slug
+            </label>
+            <input
+              name="slug"
+              type="text"
+              className="form-control"
+              id="input-slug"
+              placeholder="Slug"
+              required
+            />
+          </div>
+          <div className="col-12">
+            <label htmlFor="input-body" className="form-label">
+              Body
+            </label>
+            <textarea
+              name="body"
+              className="form-control"
+              id="input-body"
+              rows={3}
+            ></textarea>
+          </div>
+          <div className="col-md-12">
+            <label htmlFor="input-metadata" className="form-label">
+              Metadata
+            </label>
+            <textarea
+              name="metadata"
+              className="form-control"
+              id="input-metadata"
+              rows={3}
+            ></textarea>
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="input-publish-at" className="form-label">
+              Publish At
+            </label>
+            <input
+              name="publish_at"
+              type="datetime-local"
+              className="form-control"
+              id="input-publish-at"
+              required
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="input-unpublish-at" className="form-label">
+              Unpublish At
+            </label>
+            <input
+              className="form-control"
+              name="unpublish_at"
+              type="datetime-local"
+              id="input-unpublish-at"
+            />
+          </div>
+          <div className="col-12">
+            <div className="form-check float-end">
+              <input
+                name="active"
+                className="form-check-input"
+                type="checkbox"
+                id="input-active"
+                defaultChecked={true}
+              />
+              <label className="form-check-label" htmlFor="input-active">
+                Active
+              </label>
+            </div>
+          </div>
+          <div className="col-12">
+            <div className="d-grid">
+              <button type="submit" className="btn btn-primary">
+                Create
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

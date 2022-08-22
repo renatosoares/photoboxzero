@@ -4,10 +4,12 @@ import PublicationCreate from "templates/Admin/PublicationCreate";
 import MediaProps from "types/media-props";
 import * as ApiAdminMedia from "api/photo-box/admin/media";
 import DataTokenProps from "types/data-token-props";
+import ReportHeaderContextProps from "types/report-header-context-props";
 
 type PublicationCreatePageProps = {
   csrfToken: string;
   media: MediaProps[];
+  contextReportHeader: ReportHeaderContextProps;
 };
 
 const PublicationCreatePage: NextPage<PublicationCreatePageProps> = (
@@ -26,6 +28,15 @@ export const getServerSideProps: GetServerSideProps = async (
     props: {
       csrfToken: await getCsrfToken(context),
       media: await (await ApiAdminMedia.index(dataToken)).data,
+      contextReportHeader: {
+        title: "publications/create",
+        actions: [
+          {
+            label: "create",
+            pathName: "/admin/publication/create",
+          },
+        ],
+      },
     },
   };
 };
